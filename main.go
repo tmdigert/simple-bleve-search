@@ -92,6 +92,20 @@ func main() {
 			panic(err)
 		}
 
+		// how I created the index without batching
+		// for i, record := range records {
+		// 	doc := make(map[string]interface{}, 1)
+		// 	doc["geog"] = record.Geog
+		//
+		// 	err := index.Index(strconv.FormatInt(record.InventoryID, 10), doc)
+		// 	if err != nil {
+		// 		fmt.Printf("Error indexing document %d: %v\n", record.InventoryID, err)
+		// 	} else {
+		// 		fmt.Printf("%d Document %d indexed\n", i, record.InventoryID)
+		// 	}
+		// }
+		// fmt.Println("Indexing complete")
+
 		batch := index.NewBatch()
 
 		for _, record := range records {
