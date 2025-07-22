@@ -28,11 +28,11 @@ func main() {
 	case "q", "qry", "query":
 		index, _ := bleve.Open("index.bleve")
 		defer index.Close()
-		geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,59],[-147,59],[-147,62],[-152,62]]]}` // #1 time 354 ms, hits: 51,091
-		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,59],[-151,59],[-151,62],[-152,62]]]}` // #2 time:366 ms, hits: 35,812
-		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61],[-151,61],[-151,62],[-152,62]]]}` // #3 time: 390 ms, hits: 12,474
-		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61],[-151.9,61],[-151.9,62],[-152,62]]]}` // #4 time: 372 ms, hits: 363
-		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61.9],[-151.9,61.9],[-151.9,62],[-152,62]]]}` // #5 time: 373, hits: 6
+		geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,59],[-147,59],[-147,62],[-152,62]]]}` // #1 time 774 ms, hits: 51,080
+		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,59],[-151,59],[-151,62],[-152,62]]]}` // #2 time:760 ms, hits: 35,820
+		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61],[-151,61],[-151,62],[-152,62]]]}` // #3 time: 769 ms, hits: 12,483
+		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61],[-151.9,61],[-151.9,62],[-152,62]]]}` // #4 time: 749 ms, hits: 367
+		// geojson := `{"type":"Polygon","coordinates":[[[-152,62],[-152,61.9],[-151.9,61.9],[-151.9,62],[-152,62]]]}` // #5 time: 710, hits: 6
 
 		shape, _ := geo.ParseGeoJSONShape([]byte(geojson))
 		gsq := &query.GeoShapeQuery{
